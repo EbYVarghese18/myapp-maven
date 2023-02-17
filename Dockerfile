@@ -1,23 +1,34 @@
+FROM maven:3.8.4-jdk-11-slim AS build
 
-# FROM openjdk:11
+# Set the working directory
+WORKDIR /app
 
-# EXPOSE 8010
+# Copy the pom.xml file
+COPY pom.xml .
 
-# # ENV HOME=/usr/app
+# Download the dependencies
+RUN mvn dependency:go-offline -B
 
-# # RUN mkdir -p $HOME
+# Copy the source code
+COPY src/ ./src/
 
-# # WORKDIR $HOME
+# Build the application
+RUN mvn package
 
-# USER myuser
+# Create the final image
+FROM openjdk:11-jre-slim
 
-# RUN mkdir /home/myuser && chown myuser:myuser /home/myuser
+# Set the working directory
+WORKDIR /app
 
-# ADD my-app/target/myapp-maven.jar myapp-maven.jar 
+# Copy the jar file from the build stage
+COPY --from=build /app/target/my-maven-project.jar .
 
-# RUN chmod 644 /myapp-maven.jar
+# Run the application
+CMD ["java", "-jar", "my-maven-project.jar"]
 
-# ENTRYPOINT [ "java", "-jar", "/myapp-maven.jar" ]
+
+
 
 # FROM openjdk:11
 
@@ -26,13 +37,3 @@
 # COPY my-app/target/myapp-maven.jar myapp-maven.jar 
 
 # ENTRYPOINT [ "java", "-jar", "myapp-maven.jar" ]
-
-FROM maven:alpine as build
-ENV HOME=/usr/app
-RUN mkdir -p $HOME
-WORKDIR $HOME
-ADD pom.xml $HOME
-ADD . $HOME
-FROM openjdk:11-jdk-alpine 
-COPY --from=build /usr/app/target/myapp-maven.jar /app/myapp-maven.jar
-ENTRYPOINT java -jar /app/myapp-maven.jar
