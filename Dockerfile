@@ -1,8 +1,8 @@
 
 FROM openjdk:11
 
+COPY target/*.jar /
+
 EXPOSE 8010
 
-COPY my-app/target/myapp-maven.jar myapp-maven.jar 
-
-ENTRYPOINT [ "java", "-jar", "myapp-maven.jar" ]
+ENTRYPOINT [ "java", "-jar", "/myapp-maven.jar" ]
