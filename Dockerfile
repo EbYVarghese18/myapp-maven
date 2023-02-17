@@ -23,14 +23,6 @@ FROM openjdk:11
 
 EXPOSE 8010
 
-RUN useradd -ms /bin/bash myuser
-
-WORKDIR /home/myuser
-
 COPY my-app/target/myapp-maven.jar myapp-maven.jar 
-
-RUN chmod 644 myapp-maven.jar
-
-USER myuser
 
 ENTRYPOINT [ "java", "-jar", "myapp-maven.jar" ]
