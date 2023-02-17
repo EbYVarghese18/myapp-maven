@@ -5,9 +5,6 @@ pipeline {
             label "docker"
         }
     }
-    tools {
-        maven 'maven'
-    }
     stages {
         stage('SCM checkout') {
             steps {
