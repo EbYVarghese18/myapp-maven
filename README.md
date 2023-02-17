@@ -1,4 +1,4 @@
-# maven-test
+# myapp-maven
 
 This is a simple CI pipeline for a maven project. <br>
 <br>
