@@ -20,15 +20,16 @@ pipeline {
                 echo 'Build Maven Ends'
             }
         }
-        // stage('Build Docker Image') {
-        //     steps {
-        //         echo 'Build Dockerimage starts'
-        //         script{
-        //             sh 'docker build -t ebinvarghese/myapp-maven:1.0 .'
-        //         }
-        //         echo 'Build Dockerimage ends'
-        //     }
-        // }
+
+        stage('Build Docker Image') {
+            steps {
+                echo 'Build Dockerimage starts'
+                script{
+                    sh 'docker build -t ebinvarghese/myapp-maven:1.0 .'
+                }
+                echo 'Build Dockerimage ends'
+            }
+        }
         // stage('Push Docker image to Dockerhub') {
         //     steps {
         //         script{
