@@ -3,9 +3,15 @@ FROM openjdk:11
 
 EXPOSE 8010
 
-USER myuser
+ENV HOME=/usr/app
 
-RUN mkdir /home/myuser && chown myuser:myuser /home/myuser
+RUN mkdir -p $HOME
+
+WORKDIR $HOME
+
+# USER myuser
+
+# RUN mkdir /home/myuser && chown myuser:myuser /home/myuser
 
 ADD my-app/target/myapp-maven.jar myapp-maven.jar 
 
