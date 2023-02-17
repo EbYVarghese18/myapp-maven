@@ -1,17 +1,14 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image "maven:3.6.0-jdk-13"
+            label "docker"
+        }
+    }
     tools {
         maven 'maven'
     }
     stages {
-        stage ('Initialize') {
-            steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
-            }
-        }
         stage('SCM checkout') {
             steps {
                 echo 'checkout starts'
