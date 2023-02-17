@@ -30,7 +30,7 @@ pipeline {
             steps {
                 echo 'Build Dockerimage starts'
                 script{
-                    sh 'docker build -t ebinvarghese/myapp-maven .'
+                    sh 'docker build -t ebinvarghese/myapp-maven:1.0 .'
                 }
                 echo 'Build Dockerimage ends'
             }
@@ -41,7 +41,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerpwd')]) {
                     sh 'docker login -u ebinvarghese -p ${dockerpwd}'
                     }
-                    sh 'docker push ebinvarghese/myapp-maven'
+                    sh 'docker push ebinvarghese/myapp-maven:1.0'
                     sh 'docker logout'
                 }
             }
