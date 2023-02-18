@@ -34,8 +34,19 @@
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
+            <!-- Build an executable JAR -->
+        <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-jar-plugin</artifactId>
+                  <version>3.1.0</version>
+              <configuration>
+                <archive>
+                  <manifest>
+                        <addClasspath>true</addClasspath>
+                        <classpathPrefix>lib/</classpathPrefix>
+                        <mainClass>com.mycompany.app.App</mainClass>
+                  </manifest>
+                </archive>
+              </configuration>
         </plugin>
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
@@ -70,21 +81,6 @@
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
-        </plugin>
-        <plugin>
-            <!-- Build an executable JAR -->
-        <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-jar-plugin</artifactId>
-                  <version>3.1.0</version>
-              <configuration>
-                <archive>
-                  <manifest>
-                        <addClasspath>true</addClasspath>
-                        <classpathPrefix>lib/</classpathPrefix>
-                        <mainClass>com.mycompany.app.App</mainClass>
-                  </manifest>
-                </archive>
-              </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
