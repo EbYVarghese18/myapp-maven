@@ -31,16 +31,16 @@ pipeline {
                 echo 'Build Dockerimage ends'
             }
         }
-        // stage('Push Docker image to Dockerhub') {
-        //     steps {
-        //         script{
-        //             withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerpwd')]) {
-        //             sh 'docker login -u ebinvarghese -p ${dockerpwd}'
-        //             }
-        //             sh 'docker push ebinvarghese/myapp-maven:1.0'
-        //             sh 'docker logout'
-        //         }
-        //     }
-        // }
+        stage('Push Docker image to Dockerhub') {
+            steps {
+                script{
+                    withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerpwd')]) {
+                    sh 'docker login -u ebinvarghese -p ${dockerpwd}'
+                    }
+                    sh 'docker push ebinvarghese/myapp-maven:1.0'
+                    sh 'docker logout'
+                }
+            }
+        }
     }
 }
