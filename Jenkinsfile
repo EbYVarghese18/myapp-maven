@@ -9,6 +9,7 @@ pipeline {
         stage('SCM checkout') {
             steps {
                 echo 'checkout starts'
+                cleanWs()
                 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/EbYVarghese18/myapp-maven.git']])
                 echo 'checkout ends'
             }
