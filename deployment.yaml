@@ -23,7 +23,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-app-service
+  name: myapp-maven-service
 spec:
   selector:
     app: myapp-maven
