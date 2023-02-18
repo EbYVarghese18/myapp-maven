@@ -31,6 +31,7 @@ pipeline {
                 echo 'Build Dockerimage ends'
             }
         }
+
         stage('Push Docker image to Dockerhub') {
             steps {
                 script{
@@ -39,6 +40,14 @@ pipeline {
                     }
                     sh 'docker push ebinvarghese/myapp-maven:1.0'
                     sh 'docker logout'
+                }
+            }
+        }
+
+        stage('Deploy to kubernetes') {
+            steps {
+                script{
+                    
                 }
             }
         }
